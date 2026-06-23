@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vanguardlawgroup.com/sitemap.xml
+Sitemap: https://voharalegal.lk/sitemap.xml

@@ -15,8 +15,8 @@ export default function Portal() {
   const [documents, setDocuments] = useState([]);
   const [billing, setBilling] = useState([]);
   const [messages, setMessages] = useState([
-    { id: 1, sender: 'Marcus Vance, Esq.', text: "Hello Eleanor, I've reviewed the documents you uploaded last week. The opposing counsel has agreed to depositions on August 18. Please check the scheduling updates.", time: "June 20, 2:15 PM" },
-    { id: 2, sender: 'You', text: "Thank you Marcus. I have added the latest forensic ledger to the Shared Documents tab. Please let me know if we need additional bank records.", time: "June 21, 10:30 AM" }
+    { id: 1, sender: 'K. Vohara, Attorney-at-Law', text: "Hello Eleanor, I've reviewed the documents you uploaded last week. The opposing counsel has agreed to depositions on August 18. Please check the scheduling updates.", time: "June 20, 2:15 PM" },
+    { id: 2, sender: 'You', text: "Thank you Mr. Vohara. I have added the latest forensic ledger to the Shared Documents tab. Please let me know if we need additional bank records.", time: "June 21, 10:30 AM" }
   ]);
   const [newMessage, setNewMessage] = useState('');
   const [dataLoading, setDataLoading] = useState(false);
@@ -33,9 +33,9 @@ export default function Portal() {
         token: 'jwt_token_sample_abc123',
         client: {
           id: 'USR-78291',
-          name: 'Eleanor Vance (Demo)',
+          name: 'Eleanor Perera (Demo)',
           email: 'client@demo.com',
-          firmTenantId: 'TEN-VANGUARD-001'
+          firmTenantId: 'TEN-VOHARA-COLOMBO-01'
         }
       });
       sessionStorage.removeItem('demo_ticket_id');
@@ -128,7 +128,7 @@ export default function Portal() {
             <div style={styles.badge}>SaaS Portal Ready</div>
             <h1 style={{ color: 'var(--white)' }}>Secure Client Portal</h1>
             <p style={{ color: 'var(--silver-dark)' }}>
-              Vanguard Legal Partners utilizes a state-of-the-art secure case management system. 
+              Vohara Legal utilizes a state-of-the-art secure case management system. 
               Active retainer clients can download case documents, review invoices, check court calendars, and directly message their attorney in a secure encrypted environment.
             </p>
             <div style={styles.securityHighlight}>
@@ -176,6 +176,7 @@ export default function Portal() {
                   onChange={(e) => setLoginPass(e.target.value)}
                   placeholder="Enter passcode"
                   className="form-input"
+                  autoComplete="current-password"
                   required
                 />
               </div>
@@ -214,9 +215,9 @@ export default function Portal() {
               <ShieldCheck size={20} style={{ color: 'var(--primary-blue)' }} />
             </div>
             <div>
-              <h2 style={{ fontSize: '1.5rem', paddingBottom: 0, color: 'var(--primary-blue)' }}>Vanguard Client Dashboard</h2>
+              <h2 style={{ fontSize: '1.5rem', paddingBottom: 0, color: 'var(--primary-blue)' }}>Vohara Client Dashboard</h2>
               <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', margin: 0 }}>
-                Firm Tenant: <strong>Vanguard Manhattan LLP (Active)</strong> | Client: <strong>{auth.client.name}</strong>
+                Firm Tenant: <strong>Vohara Legal Colombo (Active)</strong> | Client: <strong>{auth.client.name}</strong>
               </p>
             </div>
           </div>
@@ -346,7 +347,7 @@ export default function Portal() {
                             <th style={styles.th}>Size</th>
                             <th style={styles.th}>Uploaded By</th>
                             <th style={styles.th}>Date Shared</th>
-                            <th style={styles.th} style={{ textAlign: 'right' }}>Actions</th>
+                            <th style={{ ...styles.th, textAlign: 'right' }}>Actions</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -372,7 +373,7 @@ export default function Portal() {
                                 </span>
                               </td>
                               <td style={styles.td}>{doc.date}</td>
-                              <td style={styles.td} style={{ textAlign: 'right' }}>
+                              <td style={{ ...styles.td, textAlign: 'right' }}>
                                 <button className="btn btn-silver btn-sm" style={{ padding: '0.35rem' }} onClick={() => alert(`Downloading ${doc.name}...`)}>
                                   <Download size={14} />
                                 </button>
@@ -401,13 +402,13 @@ export default function Portal() {
                             <th style={styles.th}>Description</th>
                             <th style={styles.th}>Amount</th>
                             <th style={styles.th}>Due Date / Status</th>
-                            <th style={styles.th} style={{ textAlign: 'right' }}>Action</th>
+                            <th style={{ ...styles.th, textAlign: 'right' }}>Action</th>
                           </tr>
                         </thead>
                         <tbody>
                           {billing.map((inv) => (
                             <tr key={inv.id} style={styles.tr}>
-                              <td style={styles.td} style={{ fontFamily: 'monospace', fontWeight: '700' }}>{inv.id}</td>
+                              <td style={{ ...styles.td, fontFamily: 'monospace', fontWeight: '700' }}>{inv.id}</td>
                               <td style={styles.td}>{inv.description}</td>
                               <td style={styles.td} style={{ fontWeight: '600', color: 'var(--primary-blue)' }}>{inv.amount}</td>
                               <td style={styles.td}>
@@ -422,7 +423,7 @@ export default function Portal() {
                                   {inv.dueDate}
                                 </span>
                               </td>
-                              <td style={styles.td} style={{ textAlign: 'right' }}>
+                              <td style={{ ...styles.td, textAlign: 'right' }}>
                                 {inv.paid ? (
                                   <button className="btn btn-secondary btn-sm" style={{ fontSize: '0.75rem' }} disabled>
                                     Receipt Issued
@@ -599,7 +600,7 @@ const styles = {
     justifyContent: 'center',
   },
   logoutBtn: {
-    background: 'none',
+    backgroundColor: 'transparent',
     border: '1px solid var(--silver-medium)',
     borderRadius: 'var(--border-radius-md)',
     padding: '0.5rem 1rem',
@@ -629,7 +630,7 @@ const styles = {
     boxShadow: 'var(--shadow-sm)',
   },
   sidebarLink: {
-    background: 'none',
+    backgroundColor: 'transparent',
     border: 'none',
     padding: '0.75rem 1rem',
     borderRadius: 'var(--border-radius-md)',
